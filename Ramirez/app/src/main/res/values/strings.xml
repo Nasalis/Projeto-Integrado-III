@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ramirez</string>
+    <string name="fa_a_o_seu_login_na_plataforma">Faça o seu login na plataforma</string>
+    <string name="button">Button</string>
+    <string name="entrar">Entrar</string>
+    <string name="n_o_tem_uma_conta">Não tem uma conta?</string>
+    <string name="registre_se">Registre-se</string>
+</resources>
