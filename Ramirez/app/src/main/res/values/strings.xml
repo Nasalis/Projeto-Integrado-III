@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Ramirez</string>
+    <string name="fa_a_o_seu_login_na_plataforma">Faça o seu login na plataforma</string>
+    <string name="e_mail">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="esqueci_minha_senha">Esqueci minha senha</string>
+    <string name="registre_se">Registre-se</string>
+    <string name="n_o_tem_uma_conta">Não tem uma conta?</string>
+    <string name="entrar">Entrar</string>
+    <string name="todo">TODO</string>
+    <string name="junte_se_a_nossa_comunidade_e_una_se_a_outros_profissionais">Junte-se a nossa comunidade e una-se a outros profissionais</string>
+    <string name="encontre_profissionais_ou_destaque_o_seu_trabalho">Encontre profissionais ou destaque o seu trabalho</string>
+    <string name="crie_sua_conta">Crie sua conta</string>
+    <string name="todo_2">TODO</string>
+</resources>
