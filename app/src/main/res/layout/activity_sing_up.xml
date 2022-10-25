@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_one"
+        tools:context=".SingUpActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
+            android:src="@drawable/ramirez_logo"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="30dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:text="Encontre profissionais ou destaque o seu trabalho"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Junte-se a nossa comunidade e una-se a outros profissionais"
+            android:textAlignment="center"
+            android:textColor="@color/gray_three"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="315dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/container_input_bg"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <TextView
+                android:id="@+id/textiew2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=" Crie sua conta"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal|bold"
+                app:layout_constraintBottom_toTopOf="@+id/nameVacancyToEdit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <EditText
+                android:id="@+id/ewwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="Senha"
+                android:inputType="textPersonName|textPassword"
+                android:shadowColor="@color/white"
+                android:textColor="@color/gray_two"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/nacnoEdit"
+                app:layout_constraintTop_toBottomOf="@+id/nameVacncyToEdit"
+                tools:layout_editor_absoluteX="12dp" />
+
+            <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
+            <EditText
+                android:id="@+id/nacnoEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="Confirme sua senha"
+                android:inputType="textPersonName|textPassword"
+                android:shadowColor="@color/white"
+                android:textColor="@color/gray_two"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ewwd"
+                tools:layout_editor_absoluteX="12dp" />
+
+            <EditText
+                android:id="@+id/nameVacancyToEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="Nome"
+                android:inputType="textPersonName"
+                android:shadowColor="@color/white"
+                android:textColor="@color/gray_two"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                app:layout_constraintTop_toBottomOf="@+id/textiew2"
+                tools:layout_editor_absoluteX="8dp" />
+
+            <EditText
+                android:id="@+id/nameVacncyToEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="E-mail"
+                android:inputType="textPersonName|textPassword"
+                android:shadowColor="@color/white"
+                android:textColor="@color/gray_two"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/ewwd"
+                app:layout_constraintTop_toBottomOf="@+id/nameVacancyToEdit"
+                tools:layout_editor_absoluteX="-6dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/signUpAsPhotographer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Quero ser fotógrafo"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/photographerData"
+            android:layout_width="0dp"
+            android:layout_height="216dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/container_input_bg"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/signUpAsPhotographer">
+            <EditText
+                android:id="@+id/nacnççoEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="Especialização"
+                android:inputType="textPersonName|textPassword"
+                android:shadowColor="@color/white"
+                android:textColor="@color/gray_two"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/nameVacancççyToEdit"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="12dp" />
+
+            <EditText
+                android:id="@+id/nameVacancççyToEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="Cidade"
+                android:inputType="textPersonName"
+                android:shadowColor="@color/white"
+                android:textColor="@color/gray_two"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdkit"
+                app:layout_constraintTop_toBottomOf="@+id/nacnççoEdit"
+                tools:layout_editor_absoluteX="8dp" />
+
+            <EditText
+                android:id="@+id/nameVacncyToEdkit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:hint="Estado"
+                android:inputType="textPersonName|textPassword"
+                android:shadowColor="@color/white"
+                android:textColor="@color/gray_two"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameVacancççyToEdit"
+                tools:layout_editor_absoluteX="-6dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="73dp"
+            android:background="@drawable/white_button_bg"
+            android:text="Cadastrar-se"
+            android:textColor="@color/black_five"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:translationZ="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/photographerData"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
