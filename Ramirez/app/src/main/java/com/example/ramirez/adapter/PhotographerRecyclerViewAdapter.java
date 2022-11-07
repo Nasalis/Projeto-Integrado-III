@@ -29,8 +29,8 @@ public class PhotographerRecyclerViewAdapter extends RecyclerView.Adapter<Photog
         public PhotographerViewHolder(@NonNull View itemView) {
             super(itemView);
             this.photographer_name = itemView.findViewById(R.id.name);
-            this.photographer_city = itemView.findViewById(R.id.lacation);
-            this.photographer_state = itemView.findViewById(R.id.specialization);
+            this.photographer_city = itemView.findViewById(R.id.city);
+            this.photographer_state = itemView.findViewById(R.id.state);
         }
     }
 
@@ -46,7 +46,6 @@ public class PhotographerRecyclerViewAdapter extends RecyclerView.Adapter<Photog
     public void onBindViewHolder(@NonNull PhotographerViewHolder holder, int position) {
         Photographer photographer = this.photographers.get(position);
 
-        holder.photographer_id.setText(photographer.getId());
         holder.photographer_name.setText(photographer.getName());
         holder.photographer_city.setText(photographer.getCity());
         holder.photographer_state.setText(photographer.getState());

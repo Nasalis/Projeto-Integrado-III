@@ -32,10 +32,10 @@ public class Photographer {
     }
 
     public String getState() {
-        return this.id;
+        return this.state;
     }
 
     public String getImage() {
-        return this.id;
+        return this.image;
     }
 }
