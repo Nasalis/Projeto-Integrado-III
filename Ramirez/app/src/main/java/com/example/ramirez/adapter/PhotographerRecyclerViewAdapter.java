@@ -21,17 +21,23 @@ public class PhotographerRecyclerViewAdapter extends RecyclerView.Adapter<Photog
     }
 
     public static class PhotographerViewHolder extends RecyclerView.ViewHolder {
-        TextView photographer_id;
         TextView photographer_name;
         TextView photographer_city;
         TextView photographer_state;
+        TextView photographer_specializations;
 
         public PhotographerViewHolder(@NonNull View itemView) {
             super(itemView);
             this.photographer_name = itemView.findViewById(R.id.name);
             this.photographer_city = itemView.findViewById(R.id.city);
             this.photographer_state = itemView.findViewById(R.id.state);
+            this.photographer_specializations = itemView.findViewById(R.id.specialization);
         }
+    }
+
+    public void setPhotographers(List<Photographer> photographers) {
+        this.photographers = photographers;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -49,6 +55,7 @@ public class PhotographerRecyclerViewAdapter extends RecyclerView.Adapter<Photog
         holder.photographer_name.setText(photographer.getName());
         holder.photographer_city.setText(photographer.getCity());
         holder.photographer_state.setText(photographer.getState());
+        holder.photographer_specializations.setText(photographer.getSpecializationsAsString());
     }
 
     @Override

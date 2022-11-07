@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,31 +26,40 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     private Spinner specializationSpinner;
     private RecyclerView photographersRecyclerView;
-    String[] specializations = new String[]{"Escolher espacialização", "Especialização 1", "Especialização 2", "Especialização 3"};
+    private List<Photographer> photographers;
+    private PhotographerRecyclerViewAdapter adapter;
+
+    String[] specializationsList = new String[]{"Nenhum", "Publicidade", "Arquitetura", "Revistas", "Moda", "Jornalismo", "Astronomia", "Forense", "Comercial", "Industrial", "Natureza", "Subaquático", "Cientifico", "Aerofotografia", "Documentarista", "Eróticas", "Sensuais", "Animais", "Books", "Crianças", "Esportes", "Medicina", "Produtos", "Cinema",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
 
         specializationSpinner = findViewById(R.id.specializationSpinner);
         photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
 
         // iniciando a lista
-        List<Photographer> photographers = new ArrayList<>();
+        this.photographers = new ArrayList<>();
         ArrayList<String> specializations = new ArrayList<>();
-        specializations.add("Jornalistico");
+        ArrayList<String> specializations2 = new ArrayList<>();
+        ArrayList<String> specialization3 = new ArrayList<>();
+        specializations.add("Jornalismo");
+        specializations.add("Publicidade");
+        specializations2.add("Moda");
+        specialization3.add("Astronomia");
 
         Photographer photographer = new Photographer("1", "Jéssica Gomez", "SP", "Santos", "123", specializations);
-        photographers.add(photographer);
+        this.photographers.add(photographer);
 
-        photographer = new Photographer("2", "Lucas Gomez", "SP", "Santos", "123", specializations);
-        photographers.add(photographer);
+        photographer = new Photographer("2", "Lucas Gomez", "SP", "Santos", "123", specializations2);
+        this.photographers.add(photographer);
 
-        photographer = new Photographer("3", "Matheus Gomez", "SP", "Santos", "123", specializations);
-        photographers.add(photographer);
+        photographer = new Photographer("3", "Matheus Gomez", "SP", "Santos", "123", specialization3);
+        this.photographers.add(photographer);
 
-        PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(photographers);
+        this.adapter = new PhotographerRecyclerViewAdapter(this.photographers);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         photographersRecyclerView.setLayoutManager(layoutManager);
@@ -79,16 +90,11 @@ public class HomeActivity extends AppCompatActivity {
         );
 
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, specializations){
+                this, android.R.layout.simple_spinner_item, specializationsList){
 
             @Override
             public boolean isEnabled(int position){
-                if(position == 0){
-                    // Disabilita a primeira posição (hint)
-                    return false;
-                } else {
-                    return true;
-                }
+                return true;
             }
 
             @Override
@@ -97,15 +103,6 @@ public class HomeActivity extends AppCompatActivity {
 
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-
-                if(position == 0){
-
-                    // Deixa o hint com a cor cinza ( efeito de desabilitado)
-                    tv.setTextColor(Color.GRAY);
-
-                }else {
-                    tv.setTextColor(Color.BLACK);
-                }
 
                 return view;
             }
@@ -126,5 +123,75 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+        filterPhotographerByName();
+        filterPhotographerBySpecialization();
+    }
+
+    public void filterPhotographerByName() {
+        SearchView inputName = findViewById(R.id.editTextTextPersonName);
+        inputName.clearFocus();
+        inputName.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filterList(s);
+                return false;
+            }
+        });
+    }
+
+    public void filterPhotographerBySpecialization() {
+        Spinner specializationSpinner = findViewById(R.id.specializationSpinner);
+        specializationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String specialization = adapterView.getSelectedItem().toString();
+                filterListBySpecialization(specialization);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void filterListBySpecialization(String text) {
+        if (text.contains("Nenhum")) {
+            this.adapter.setPhotographers(this.photographers);
+            return;
+        }
+        List<Photographer> filteredList = new ArrayList<>();
+        for (Photographer photographer : this.photographers) {
+            if (photographer.getSpecializations().contains(text)) {
+                filteredList.add(photographer);
+            }
+        }
+
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, "Nenhum dado encontrado", Toast.LENGTH_SHORT).show();
+        } else {
+            this.adapter.setPhotographers(filteredList);
+        }
+    }
+
+    public void filterList(String text) {
+        List<Photographer> filteredList = new ArrayList<>();
+        for (Photographer photographer : this.photographers) {
+            if (photographer.getName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(photographer);
+            }
+        }
+
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, "Nenhum dado encontrado", Toast.LENGTH_SHORT).show();
+        } else {
+            this.adapter.setPhotographers(filteredList);
+        }
     }
 }

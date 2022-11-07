@@ -38,4 +38,22 @@ public class Photographer {
     public String getImage() {
         return this.image;
     }
+
+    public List<String> getSpecializations() {
+        return this.specializations;
+    }
+
+    public String getSpecializationsAsString() {
+        StringBuilder output = new StringBuilder();
+        int iterator = 0;
+        for (String item : this.specializations) {
+            if (iterator != this.specializations.size() - 1) {
+                output.append(item).append(" - ");
+            } else {
+                output.append(item);
+            }
+            iterator++;
+        }
+        return output.toString();
+    }
 }
