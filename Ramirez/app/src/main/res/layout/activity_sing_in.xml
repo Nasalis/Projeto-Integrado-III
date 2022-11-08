@@ -112,6 +112,7 @@
         android:id="@+id/goToSingUpActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
         android:text="@string/registre_se"
         android:textColor="@color/turquoise_one"
