@@ -185,19 +185,25 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void filterListByPrices() {
-        String minValue = findViewById(R.id.minValue).toString();
-        String maxValue = findViewById(R.id.maxValue).toString();
+        EditText minValue = findViewById(R.id.minValue);
+        EditText maxValue = findViewById(R.id.maxValue);
         Button searchButton = findViewById(R.id.searchButton);
-
-        Log.d("AAA", minValue + " " + maxValue);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 List<Photographer> filteredList = new ArrayList<>();
 
+                if (minValue.getText().toString().isEmpty() || maxValue.getText().toString().isEmpty()) {
+                    adapter.setPhotographers(photographers);
+                    return;
+                }
+
+                Float min = Float.parseFloat(minValue.getText().toString());
+                Float max = Float.parseFloat(maxValue.getText().toString());
+
                 for (Photographer photographer : photographers) {
-                    if (Float.parseFloat(minValue) >= photographer.getMinValue() || Float.parseFloat(maxValue) <= photographer.getMaxValue()) {
+                    if (min >= photographer.getMinValue() && max <= photographer.getMaxValue()) {
                         filteredList.add(photographer);
                     }
                 }
