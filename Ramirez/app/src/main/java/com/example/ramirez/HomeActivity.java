@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -42,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // iniciando a lista
         this.photographers = new ArrayList<>();
+
         ArrayList<String> specializations = new ArrayList<>();
         ArrayList<String> specializations2 = new ArrayList<>();
         ArrayList<String> specialization3 = new ArrayList<>();
@@ -50,13 +53,13 @@ public class HomeActivity extends AppCompatActivity {
         specializations2.add("Moda");
         specialization3.add("Astronomia");
 
-        Photographer photographer = new Photographer("1", "Jéssica Gomez", "SP", "Santos", "123", specializations);
+        Photographer photographer = new Photographer("1", "Jéssica Gomez", "SP", "Santos", "123", specializations, new Float[]{20f, 30f});
         this.photographers.add(photographer);
 
-        photographer = new Photographer("2", "Lucas Gomez", "SP", "Santos", "123", specializations2);
+        photographer = new Photographer("2", "Lucas Gomez", "SP", "Santos", "123", specializations2, new Float[]{40f, 50f});
         this.photographers.add(photographer);
 
-        photographer = new Photographer("3", "Matheus Gomez", "SP", "Santos", "123", specialization3);
+        photographer = new Photographer("3", "Matheus Gomez", "SP", "Santos", "123", specialization3, new Float[]{35f, 52f});
         this.photographers.add(photographer);
 
         this.adapter = new PhotographerRecyclerViewAdapter(this.photographers);
@@ -126,6 +129,7 @@ public class HomeActivity extends AppCompatActivity {
 
         filterPhotographerByName();
         filterPhotographerBySpecialization();
+        filterListByPrices();
     }
 
     public void filterPhotographerByName() {
@@ -161,7 +165,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void filterListBySpecialization(String text) {
+    private void filterListBySpecialization(String text) {
         if (text.contains("Nenhum")) {
             this.adapter.setPhotographers(this.photographers);
             return;
@@ -178,6 +182,33 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             this.adapter.setPhotographers(filteredList);
         }
+    }
+
+    public void filterListByPrices() {
+        String minValue = findViewById(R.id.minValue).toString();
+        String maxValue = findViewById(R.id.maxValue).toString();
+        Button searchButton = findViewById(R.id.searchButton);
+
+        Log.d("AAA", minValue + " " + maxValue);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Photographer> filteredList = new ArrayList<>();
+
+                for (Photographer photographer : photographers) {
+                    if (Float.parseFloat(minValue) >= photographer.getMinValue() || Float.parseFloat(maxValue) <= photographer.getMaxValue()) {
+                        filteredList.add(photographer);
+                    }
+                }
+
+                if (filteredList.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Nenhum dado encontrado", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapter.setPhotographers(filteredList);
+                }
+            }
+        });
     }
 
     public void filterList(String text) {

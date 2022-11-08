@@ -45,7 +45,7 @@ android:fillViewport="true" >
         android:id="@+id/editTextTextPersonName"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/singUpButton"
+        app:layout_constraintBottom_toTopOf="@+id/searchButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -53,7 +53,7 @@ android:fillViewport="true" >
         android:padding="5dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/singUpButton"
+        android:id="@+id/searchButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
@@ -76,7 +76,7 @@ android:fillViewport="true" >
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/singUpButton"
+        app:layout_constraintTop_toBottomOf="@+id/searchButton"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -94,14 +94,14 @@ android:fillViewport="true" >
         app:layout_constraintTop_toBottomOf="@+id/specializationSpinner" />
 
     <EditText
-        android:id="@+id/e"
+        android:id="@+id/minValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/container_input_white_bg"
         android:ems="10"
         android:hint="Mínimo"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -109,20 +109,20 @@ android:fillViewport="true" >
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
-        android:id="@+id/e2"
+        android:id="@+id/maxValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/container_input_white_bg"
         android:ems="10"
         android:hint="Máximo"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/e" />
+        app:layout_constraintTop_toBottomOf="@+id/minValue" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/localization"
@@ -138,7 +138,7 @@ android:fillViewport="true" >
         android:translationZ="100dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/e2" />
+        app:layout_constraintTop_toBottomOf="@+id/maxValue" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/photographersRecyclerView"

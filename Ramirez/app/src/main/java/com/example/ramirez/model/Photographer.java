@@ -9,14 +9,16 @@ public class Photographer {
     private String city;
     private String image;
     private List<String> specializations;
+    private Float[] prices;
 
-    public Photographer(String id, String name, String state, String city, String image, List<String> specializations) {
+    public Photographer(String id, String name, String state, String city, String image, List<String> specializations, Float[] prices) {
         this.id = id;
         this.name = name;
         this.state = state;
         this.city = city;
         this.image = image;
         this.specializations = specializations;
+        this.prices = prices;
     }
 
     public String getId() {
@@ -35,8 +37,14 @@ public class Photographer {
         return this.state;
     }
 
-    public String getImage() {
-        return this.image;
+    public String getImage() { return this.image; }
+
+    public float getMinValue() {
+        return this.prices[0];
+    }
+
+    public float getMaxValue() {
+        return  this.prices[1];
     }
 
     public List<String> getSpecializations() {
