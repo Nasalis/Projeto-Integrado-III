@@ -1,9 +1,12 @@
 package com.example.ramirez;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ramirez.adapter.PhotographerRecyclerViewAdapter;
+import com.example.ramirez.dao.IPhotographerDAO;
+import com.example.ramirez.dao.PhotographerDAO;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.model.Photographer;
 
@@ -28,8 +33,8 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     private Spinner specializationSpinner;
     private RecyclerView photographersRecyclerView;
-    private List<Photographer> photographers;
-    private PhotographerRecyclerViewAdapter adapter;
+    private List<Photographer> photographers = PhotographerDAO.getInstance(this).getPhotographer();
+    private PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(PhotographerDAO.getInstance(this).getPhotographer());
 
     String[] specializationsList = new String[]{"Nenhum", "Publicidade", "Arquitetura", "Revistas", "Moda", "Jornalismo", "Astronomia", "Forense", "Comercial", "Industrial", "Natureza", "Subaquático", "Cientifico", "Aerofotografia", "Documentarista", "Eróticas", "Sensuais", "Animais", "Books", "Crianças", "Esportes", "Medicina", "Produtos", "Cinema",};
 
@@ -41,28 +46,7 @@ public class HomeActivity extends AppCompatActivity {
 
         specializationSpinner = findViewById(R.id.specializationSpinner);
         photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
-
-        // iniciando a lista
-        this.photographers = new ArrayList<>();
-
-        ArrayList<String> specializations = new ArrayList<>();
-        ArrayList<String> specializations2 = new ArrayList<>();
-        ArrayList<String> specialization3 = new ArrayList<>();
-        specializations.add("Jornalismo");
-        specializations.add("Publicidade");
-        specializations2.add("Moda");
-        specialization3.add("Astronomia");
-
-        Photographer photographer = new Photographer("1", "Jéssica Gomez", "SP", "Santos", "123", specializations, new Float[]{20f, 30f});
-        this.photographers.add(photographer);
-
-        photographer = new Photographer("2", "Lucas Gomez", "SP", "Santos", "123", specializations2, new Float[]{40f, 50f});
-        this.photographers.add(photographer);
-
-        photographer = new Photographer("3", "Matheus Gomez", "SP", "Santos", "123", specialization3, new Float[]{35f, 52f});
-        this.photographers.add(photographer);
-
-        this.adapter = new PhotographerRecyclerViewAdapter(this.photographers);
+        adapter = new PhotographerRecyclerViewAdapter(PhotographerDAO.getInstance(this).getPhotographer());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         photographersRecyclerView.setLayoutManager(layoutManager);
@@ -77,6 +61,9 @@ public class HomeActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Toast.makeText(HomeActivity.this,"item selecionado: ", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                                intent.putExtra("PROFILE_ID", position);
+                                startActivity(intent);
                             }
 
                             @Override

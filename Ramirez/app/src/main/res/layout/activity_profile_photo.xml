@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true" >
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,34 +29,33 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="340dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/container_input_bg"
             android:paddingLeft="12dp"
             android:paddingTop="16dp"
             android:paddingRight="12dp"
             android:paddingBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="176dp"
                 android:layout_height="176dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView22"
+                app:layout_constraintBottom_toTopOf="@+id/photographerNameProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/photographer_profile" />
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/photographerNameProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="140dp"
@@ -74,7 +74,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="12dp"
                 android:background="@color/turquoise_one"
-                app:layout_constraintTop_toBottomOf="@+id/textView22"
+                app:layout_constraintTop_toBottomOf="@+id/photographerNameProfile"
                 tools:layout_editor_absoluteX="12dp" />
 
             <TextView
@@ -110,17 +110,15 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="12dp"
             android:background="@drawable/container_input_bg"
             android:paddingLeft="12dp"
             android:paddingTop="16dp"
             android:paddingRight="12dp"
             android:paddingBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayoutCareer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutCareer">
 
             <TextView
                 android:id="@+id/txtviewAbout"
@@ -154,17 +152,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/container_input_bg"
             android:paddingLeft="12dp"
             android:paddingTop="16dp"
             android:paddingRight="12dp"
             android:paddingBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <TextView
                 android:id="@+id/textView15"
@@ -213,7 +211,7 @@
                     android:background="@color/turquoise_one" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/photographerSpecializations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -222,7 +220,7 @@
                     android:textColor="@color/gray_three" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/photographerPrices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -233,16 +231,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/divider3"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaDePostagem"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="30dp"
-            android:background="@color/turquoise_one"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutCareer" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
