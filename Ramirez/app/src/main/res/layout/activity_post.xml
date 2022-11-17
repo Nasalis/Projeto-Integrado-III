@@ -60,21 +60,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/photoPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="R$ 25,00"
                     android:textColor="@color/turquoise_one"
-                    />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/commentsAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Comentários (4)"
                 android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
@@ -86,7 +87,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                app:layout_constraintTop_toBottomOf="@+id/commentsAmount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package com.example.ramirez;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ramirez.adapter.PhotoRecyclerViewAdapter;
 import com.example.ramirez.dao.PhotographerDAO;
+import com.example.ramirez.dao.PostDAO;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.model.Comment;
 import com.example.ramirez.model.Photographer;
@@ -34,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_photo);
 
         this.postRecyclerView = findViewById(R.id.listaDePostagem);
-        this.posts = new ArrayList<>();
+        this.posts = PostDAO.getInstance(getApplicationContext()).getPosts();
 
         Bundle extras = getIntent().getExtras();
         Integer index = extras.getInt("PROFILE_ID");
@@ -49,11 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
         userName.setText(currentPhotographer.getName());
         userPrices.setText(currentPhotographer.getPrices());
         userSpecialization.setText(currentPhotographer.getSpecializationsAsString());
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.photo_view);
-        ArrayList<Comment> comments = new ArrayList<>();
-        comments.add(new Comment("123", "Affonso Ribeiro", "11/11/2022", "Muito bom!", "aaa"));
-        posts.add(new Post("123", "Affonso Ribeiro", 25f, bitmap, comments));
 
         this.adapter = new PhotoRecyclerViewAdapter(this.posts);
 
@@ -70,6 +67,9 @@ public class ProfileActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Toast.makeText(ProfileActivity.this,"item selecionado: ", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(ProfileActivity.this, PostActivity.class);
+                                intent.putExtra("POST_ID", position);
+                                startActivity(intent);
                             }
 
                             @Override

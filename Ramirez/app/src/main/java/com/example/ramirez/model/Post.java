@@ -33,4 +33,6 @@ public class Post {
 
     public Bitmap getImage() { return this.image; }
 
+    public ArrayList<Comment> getComments() { return this.comments; }
+
 }
