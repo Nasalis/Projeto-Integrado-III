@@ -134,10 +134,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:autofillHints=""
                     android:background="@drawable/input_bg"
                     android:ems="10"
                     android:hint="E-mail"
-                    android:inputType="textPersonName"
+                    android:inputType="textEmailAddress"
                     android:minHeight="48dp"
                     android:shadowColor="@color/white"
                     android:textColor="@color/gray_two"
@@ -145,38 +146,38 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
                     app:layout_constraintTop_toBottomOf="@+id/textiew2"
-                    tools:layout_editor_absoluteX="8dp"
-                    android:autofillHints="" />
+                    tools:layout_editor_absoluteX="8dp" />
 
                 <EditText
                     android:id="@+id/ewwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:autofillHints=""
                     android:background="@drawable/input_bg"
                     android:ems="10"
                     android:hint="Senha"
-                    android:inputType="textPersonName|textPassword"
+                    android:inputType="textPassword"
                     android:minHeight="48dp"
                     android:shadowColor="@color/white"
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toTopOf="@+id/nacnoEdit"
                     app:layout_constraintTop_toBottomOf="@+id/nameVacncyToEdit"
-                    tools:layout_editor_absoluteX="12dp"
-                    android:autofillHints="" />
+                    tools:layout_editor_absoluteX="12dp" />
 
                 <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
                 <EditText
                     android:id="@+id/nacnoEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:autofillHints=""
                     android:background="@drawable/input_bg"
                     android:ems="10"
-                    android:layout_marginBottom="16dp"
                     android:hint="Confirme sua senha"
-                    android:inputType="textPersonName|textPassword"
+                    android:inputType="textPassword"
                     android:minHeight="48dp"
                     android:shadowColor="@color/white"
                     android:textColor="@color/gray_two"
@@ -184,8 +185,7 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ewwd"
-                    tools:layout_editor_absoluteX="12dp"
-                    android:autofillHints="" />
+                    tools:layout_editor_absoluteX="12dp" />
 
                 <EditText
                     android:id="@+id/edit_text"
@@ -257,7 +257,7 @@
                     android:background="@drawable/input_bg"
                     android:ems="10"
                     android:hint="Valor mínimo"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:minHeight="48dp"
                     android:shadowColor="@color/white"
                     android:textColor="@color/gray_two"
@@ -275,7 +275,7 @@
                     android:background="@drawable/input_bg"
                     android:ems="10"
                     android:hint="Valor máximo"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:minHeight="48dp"
                     android:shadowColor="@color/white"
                     android:textColor="@color/gray_two"
