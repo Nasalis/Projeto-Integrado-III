@@ -28,6 +28,12 @@
             app:layout_constraintGuide_end="30dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -124,7 +130,7 @@
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
                     app:layout_constraintTop_toBottomOf="@+id/textiew2"
                     tools:layout_editor_absoluteX="8dp"
                     android:autofillHints="" />
@@ -144,7 +150,7 @@
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
                     app:layout_constraintTop_toBottomOf="@+id/textiew2"
                     tools:layout_editor_absoluteX="8dp" />
 
@@ -164,7 +170,7 @@
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/nacnoEdit"
-                    app:layout_constraintTop_toBottomOf="@+id/nameVacncyToEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordSignIn"
                     tools:layout_editor_absoluteX="12dp" />
 
                 <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
@@ -214,7 +220,7 @@
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
                     app:layout_constraintTop_toBottomOf="@+id/textiew2"
                     tools:layout_editor_absoluteX="8dp"
                     android:autofillHints="" />
@@ -233,7 +239,7 @@
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
                     app:layout_constraintTop_toBottomOf="@+id/textiew2"
                     tools:layout_editor_absoluteX="8dp" />
 
@@ -263,7 +269,7 @@
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
                     app:layout_constraintTop_toBottomOf="@+id/textiew2"
                     tools:layout_editor_absoluteX="8dp" />
 
@@ -281,7 +287,7 @@
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
                     app:layout_constraintTop_toBottomOf="@+id/textiew2"
                     tools:layout_editor_absoluteX="8dp" />
 

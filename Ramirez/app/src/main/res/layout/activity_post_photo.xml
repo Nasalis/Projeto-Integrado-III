@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/nameVacancyToEdit"
+            android:id="@+id/emailSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
@@ -39,7 +39,7 @@
             tools:layout_editor_absoluteX="12dp" />
 
         <EditText
-            android:id="@+id/nameVacncyToEdit"
+            android:id="@+id/passwordSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
@@ -66,7 +66,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameVacancyToEdit" />
+            app:layout_constraintTop_toBottomOf="@+id/emailSignIn" />
 
         <TextView
             android:id="@+id/textView6"
@@ -77,7 +77,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameVacncyToEdit" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordSignIn" />
 
         <TextView
             android:id="@+id/textView8"
