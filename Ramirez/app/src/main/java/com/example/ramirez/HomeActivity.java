@@ -1,15 +1,12 @@
 package com.example.ramirez;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,22 +15,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ramirez.adapter.PhotographerRecyclerViewAdapter;
-import com.example.ramirez.dao.IPhotographerDAO;
 import com.example.ramirez.dao.PhotographerDAO;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.model.Photographer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
-    private Spinner specializationSpinner;
-    private RecyclerView photographersRecyclerView;
-    private List<Photographer> photographers = PhotographerDAO.getInstance(this).getPhotographer();
+    private final List<Photographer> photographers = PhotographerDAO.getInstance(this).getPhotographer();
     private PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(PhotographerDAO.getInstance(this).getPhotographer());
 
     String[] specializationsList = new String[]{"Nenhum", "Publicidade", "Arquitetura", "Revistas", "Moda", "Jornalismo", "Astronomia", "Forense", "Comercial", "Industrial", "Natureza", "Subaquático", "Cientifico", "Aerofotografia", "Documentarista", "Eróticas", "Sensuais", "Animais", "Books", "Crianças", "Esportes", "Medicina", "Produtos", "Cinema",};
@@ -41,11 +35,11 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_home);
 
-        specializationSpinner = findViewById(R.id.specializationSpinner);
-        photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
+        Spinner specializationSpinner = findViewById(R.id.specializationSpinner);
+        RecyclerView photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
         adapter = new PhotographerRecyclerViewAdapter(PhotographerDAO.getInstance(this).getPhotographer());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -89,12 +83,9 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
+                                        @NonNull ViewGroup parent) {
 
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-
-                return view;
+                return super.getDropDownView(position, convertView, parent);
             }
         };
 
@@ -176,30 +167,27 @@ public class HomeActivity extends AppCompatActivity {
         EditText maxValue = findViewById(R.id.maxValue);
         Button searchButton = findViewById(R.id.searchButton);
 
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<Photographer> filteredList = new ArrayList<>();
+        searchButton.setOnClickListener(view -> {
+            List<Photographer> filteredList = new ArrayList<>();
 
-                if (minValue.getText().toString().isEmpty() || maxValue.getText().toString().isEmpty()) {
-                    adapter.setPhotographers(photographers);
-                    return;
+            if (minValue.getText().toString().isEmpty() || maxValue.getText().toString().isEmpty()) {
+                adapter.setPhotographers(photographers);
+                return;
+            }
+
+            float min = Float.parseFloat(minValue.getText().toString());
+            float max = Float.parseFloat(maxValue.getText().toString());
+
+            for (Photographer photographer : photographers) {
+                if (min >= photographer.getMinValue() && max <= photographer.getMaxValue()) {
+                    filteredList.add(photographer);
                 }
+            }
 
-                Float min = Float.parseFloat(minValue.getText().toString());
-                Float max = Float.parseFloat(maxValue.getText().toString());
-
-                for (Photographer photographer : photographers) {
-                    if (min >= photographer.getMinValue() && max <= photographer.getMaxValue()) {
-                        filteredList.add(photographer);
-                    }
-                }
-
-                if (filteredList.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Nenhum dado encontrado", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapter.setPhotographers(filteredList);
-                }
+            if (filteredList.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Nenhum dado encontrado", Toast.LENGTH_SHORT).show();
+            } else {
+                adapter.setPhotographers(filteredList);
             }
         });
     }
