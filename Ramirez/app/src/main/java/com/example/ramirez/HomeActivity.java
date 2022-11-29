@@ -18,8 +18,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ramirez.adapter.PhotographerRecyclerViewAdapter;
-import com.example.ramirez.dao.PhotographerDAO;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
+import com.example.ramirez.helpers.SessionManager;
+import com.example.ramirez.helpers.UsersService;
 import com.example.ramirez.model.Photographer;
 
 import java.util.ArrayList;
@@ -27,8 +28,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
-    private final List<Photographer> photographers = PhotographerDAO.getInstance(this).getPhotographer();
-    private PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(PhotographerDAO.getInstance(this).getPhotographer());
+    private List<Photographer> photographers = new ArrayList<>();
+    private PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(new ArrayList<>());
 
     String[] specializationsList = new String[]{"Nenhum", "Publicidade", "Arquitetura", "Revistas", "Moda", "Jornalismo", "Astronomia", "Forense", "Comercial", "Industrial", "Natureza", "Subaquático", "Cientifico", "Aerofotografia", "Documentarista", "Eróticas", "Sensuais", "Animais", "Books", "Crianças", "Esportes", "Medicina", "Produtos", "Cinema",};
 
@@ -40,7 +41,10 @@ public class HomeActivity extends AppCompatActivity {
 
         Spinner specializationSpinner = findViewById(R.id.specializationSpinner);
         RecyclerView photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
-        adapter = new PhotographerRecyclerViewAdapter(PhotographerDAO.getInstance(this).getPhotographer());
+        SessionManager sessionManager = new SessionManager(this);
+        UsersService usersService = new UsersService(sessionManager);
+        photographers = usersService.getPhotographersByDatabase();
+        adapter = new PhotographerRecyclerViewAdapter(photographers);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         photographersRecyclerView.setLayoutManager(layoutManager);
