@@ -32,6 +32,8 @@ public class HomeActivity extends AppCompatActivity {
     private List<Photographer> photographers = new ArrayList<>();
     private PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(new ArrayList<>());
 
+    String[] specializationsList = {"Nenhum","Eventos Sociais","Publicidade","Arquitetura","Revistas","Moda","Jornalismo","Astronomia","Forense","Comercial","Industrial","Natureza","Subaquático","Cientifico","Documentos Oficiais","Aerofotografia","Documentarista","Nu Artístico","Modelos Dental","Eróticas","Sensuais","Animais","Books","Crianças","Esportes","Medicina","Festas Infantis","Produtos","Abstrata e Artística"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
 
         photographers = usersService.getPhotographersByDatabase();
         adapter = new PhotographerRecyclerViewAdapter(photographers);
-        ArrayList<String> specializationsList = specializationService.getSpecialization();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         photographersRecyclerView.setLayoutManager(layoutManager);
