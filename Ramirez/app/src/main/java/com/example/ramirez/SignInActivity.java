@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.ramirez.helpers.SessionManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,7 +27,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
+
 public class SignInActivity extends AppCompatActivity {
+    private SessionManager sessionManager;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private Boolean signed = false;
 
@@ -33,6 +39,8 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_sing_in);
+
+        this.sessionManager = new SessionManager(this);
 
         TextView goToSingUpActivity = findViewById(R.id.goToSingUpActivity);
         Button loginBtn = findViewById(R.id.btnLogin);
@@ -83,9 +91,23 @@ public class SignInActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) {
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
                     signed = true;
+                    String jsonData = response.body().string();
+                    JSONObject Jobject = null;
+                    try {
+                        Jobject = new JSONObject(jsonData);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        sessionManager.saveAuthToken(Jobject.get("token").toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 } else {
                     SignInActivity.this.runOnUiThread(() -> Toast.makeText(context, "Login falhou. Verifique se os dados estão corretos", Toast.LENGTH_SHORT).show());
 
