@@ -22,6 +22,7 @@ import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.helpers.SessionManager;
 import com.example.ramirez.helpers.UsersService;
 import com.example.ramirez.model.Photographer;
+import com.example.ramirez.services.SpecializationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,6 @@ public class HomeActivity extends AppCompatActivity {
     private List<Photographer> photographers = new ArrayList<>();
     private PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(new ArrayList<>());
 
-    String[] specializationsList = new String[]{"Nenhum", "Publicidade", "Arquitetura", "Revistas", "Moda", "Jornalismo", "Astronomia", "Forense", "Comercial", "Industrial", "Natureza", "Subaquático", "Cientifico", "Aerofotografia", "Documentarista", "Eróticas", "Sensuais", "Animais", "Books", "Crianças", "Esportes", "Medicina", "Produtos", "Cinema",};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +40,14 @@ public class HomeActivity extends AppCompatActivity {
 
         Spinner specializationSpinner = findViewById(R.id.specializationSpinner);
         RecyclerView photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
+
         SessionManager sessionManager = new SessionManager(this);
         UsersService usersService = new UsersService(sessionManager);
+        SpecializationService specializationService = new SpecializationService(sessionManager);
+
         photographers = usersService.getPhotographersByDatabase();
         adapter = new PhotographerRecyclerViewAdapter(photographers);
+        ArrayList<String> specializationsList = specializationService.getSpecialization();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         photographersRecyclerView.setLayoutManager(layoutManager);
