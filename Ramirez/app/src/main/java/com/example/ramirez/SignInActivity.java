@@ -87,7 +87,7 @@ public class SignInActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     signed = true;
                 } else {
-                    SignInActivity.this.runOnUiThread(() -> Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show());
+                    SignInActivity.this.runOnUiThread(() -> Toast.makeText(context, "Login falhou. Verifique se os dados estão corretos", Toast.LENGTH_SHORT).show());
 
                 }
             }
