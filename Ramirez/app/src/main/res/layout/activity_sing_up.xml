@@ -87,7 +87,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="normal|bold"
-                app:layout_constraintBottom_toTopOf="@+id/nameVacancyToEdit"
+                app:layout_constraintBottom_toTopOf="@+id/emailSignIn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -107,7 +107,7 @@
                 android:textColorHint="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/nacnoEdit"
-                app:layout_constraintTop_toBottomOf="@+id/nameVacncyToEdit"
+                app:layout_constraintTop_toBottomOf="@+id/passwordSignIn"
                 tools:layout_editor_absoluteX="12dp" />
 
             <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
@@ -129,7 +129,7 @@
                 tools:layout_editor_absoluteX="12dp" />
 
             <EditText
-                android:id="@+id/nameVacancyToEdit"
+                android:id="@+id/emailSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
@@ -141,12 +141,12 @@
                 android:textColor="@color/gray_two"
                 android:textColorHint="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdit"
+                app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
                 app:layout_constraintTop_toBottomOf="@+id/textiew2"
                 tools:layout_editor_absoluteX="8dp" />
 
             <EditText
-                android:id="@+id/nameVacncyToEdit"
+                android:id="@+id/passwordSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
@@ -160,7 +160,7 @@
                 android:textColorHint="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/ewwd"
-                app:layout_constraintTop_toBottomOf="@+id/nameVacancyToEdit"
+                app:layout_constraintTop_toBottomOf="@+id/emailSignIn"
                 tools:layout_editor_absoluteX="-6dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView

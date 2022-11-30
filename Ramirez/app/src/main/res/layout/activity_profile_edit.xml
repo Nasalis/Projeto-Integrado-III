@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_one"
+        tools:context=".SingUpActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="30dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/container_input_bg"
+            android:paddingLeft="12dp"
+            android:paddingTop="16dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="176dp"
+                android:layout_height="176dp"
+                app:layout_constraintBottom_toTopOf="@+id/photographerNameProfile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/photographer_profile"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:id="@+id/photographerNameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="141dp"
+                android:text="@string/let_cia_montenegro_sampaio"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutCareer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/container_input_bg"
+            android:paddingLeft="12dp"
+            android:paddingTop="16dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Edite seus dados"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView15"
+                tools:layout_editor_absoluteX="12dp">
+
+                <EditText
+                    android:id="@+id/nameUserEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="Nome"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
+                    app:layout_constraintTop_toBottomOf="@+id/textiew2"
+                    tools:layout_editor_absoluteX="8dp"
+                    android:autofillHints="" />
+
+                <EditText
+                    android:id="@+id/emailUserEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
+                    app:layout_constraintTop_toBottomOf="@+id/textiew2"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <EditText
+                    android:id="@+id/ewwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="Senha"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/nacnoEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordSignIn"
+                    tools:layout_editor_absoluteX="12dp" />
+
+                <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
+                <EditText
+                    android:id="@+id/nacnoEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="Confirme sua senha"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ewwd"
+                    tools:layout_editor_absoluteX="12dp" />
+
+                <EditText
+                    android:id="@+id/edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/black_five"
+                    android:hint="Digite sobre você"
+                    android:inputType="text|textMultiLine"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white" />
+
+
+                <EditText
+                    android:id="@+id/nameVacancyToEdit9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="Cidade"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
+                    app:layout_constraintTop_toBottomOf="@+id/textiew2"
+                    tools:layout_editor_absoluteX="8dp"
+                    android:autofillHints="" />
+
+                <EditText
+                    android:id="@+id/nameVacancyToEdit4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="Estado"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
+                    app:layout_constraintTop_toBottomOf="@+id/textiew2"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <Spinner
+                    android:id="@+id/specializationSpinner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/container_input_bg"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/searchButton"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <EditText
+                    android:id="@+id/nameVacancyToEdit14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="Valor mínimo"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
+                    app:layout_constraintTop_toBottomOf="@+id/textiew2"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <EditText
+                    android:id="@+id/nameVacancyToEdit15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/input_bg"
+                    android:ems="10"
+                    android:hint="Valor máximo"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:shadowColor="@color/white"
+                    android:textColor="@color/gray_two"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
+                    app:layout_constraintTop_toBottomOf="@+id/textiew2"
+                    tools:layout_editor_absoluteX="8dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/searchButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/container_input_white_bg"
+                    android:text="Confirmar"
+                    android:textColor="@color/black_five"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:translationZ="100dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

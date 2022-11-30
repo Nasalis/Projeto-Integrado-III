@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:targetSandboxVersion="1"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ramirez">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -36,6 +38,18 @@
         </activity>
         <activity
             android:name=".HomeActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".PostPhotoActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".PostActivity"
             android:exported="false">
         </activity>
     </application>

@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ramirez.R;
 import com.example.ramirez.model.Photographer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PhotographerRecyclerViewAdapter extends RecyclerView.Adapter<PhotographerRecyclerViewAdapter.PhotographerViewHolder> {
-    private List<Photographer> photographers;
+    private List<Photographer> photographers = new ArrayList<>();
 
     public PhotographerRecyclerViewAdapter(List<Photographer> photographers) {
         this.photographers = photographers;

@@ -1,12 +1,12 @@
 package com.example.ramirez;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,54 +15,40 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ramirez.adapter.PhotographerRecyclerViewAdapter;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
+import com.example.ramirez.helpers.SessionManager;
+import com.example.ramirez.helpers.UsersService;
 import com.example.ramirez.model.Photographer;
+import com.example.ramirez.services.SpecializationService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
-    private Spinner specializationSpinner;
-    private RecyclerView photographersRecyclerView;
-    private List<Photographer> photographers;
-    private PhotographerRecyclerViewAdapter adapter;
+    private List<Photographer> photographers = new ArrayList<>();
+    private PhotographerRecyclerViewAdapter adapter = new PhotographerRecyclerViewAdapter(new ArrayList<>());
 
-    String[] specializationsList = new String[]{"Nenhum", "Publicidade", "Arquitetura", "Revistas", "Moda", "Jornalismo", "Astronomia", "Forense", "Comercial", "Industrial", "Natureza", "Subaquático", "Cientifico", "Aerofotografia", "Documentarista", "Eróticas", "Sensuais", "Animais", "Books", "Crianças", "Esportes", "Medicina", "Produtos", "Cinema",};
+    String[] specializationsList = {"Nenhum","Eventos Sociais","Publicidade","Arquitetura","Revistas","Moda","Jornalismo","Astronomia","Forense","Comercial","Industrial","Natureza","Subaquático","Cientifico","Documentos Oficiais","Aerofotografia","Documentarista","Nu Artístico","Modelos Dental","Eróticas","Sensuais","Animais","Books","Crianças","Esportes","Medicina","Festas Infantis","Produtos","Abstrata e Artística"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_home);
 
-        specializationSpinner = findViewById(R.id.specializationSpinner);
-        photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
+        Spinner specializationSpinner = findViewById(R.id.specializationSpinner);
+        RecyclerView photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
 
-        // iniciando a lista
-        this.photographers = new ArrayList<>();
+        SessionManager sessionManager = new SessionManager(this);
+        UsersService usersService = new UsersService(sessionManager);
+        SpecializationService specializationService = new SpecializationService(sessionManager);
 
-        ArrayList<String> specializations = new ArrayList<>();
-        ArrayList<String> specializations2 = new ArrayList<>();
-        ArrayList<String> specialization3 = new ArrayList<>();
-        specializations.add("Jornalismo");
-        specializations.add("Publicidade");
-        specializations2.add("Moda");
-        specialization3.add("Astronomia");
-
-        Photographer photographer = new Photographer("1", "Jéssica Gomez", "SP", "Santos", "123", specializations, new Float[]{20f, 30f});
-        this.photographers.add(photographer);
-
-        photographer = new Photographer("2", "Lucas Gomez", "SP", "Santos", "123", specializations2, new Float[]{40f, 50f});
-        this.photographers.add(photographer);
-
-        photographer = new Photographer("3", "Matheus Gomez", "SP", "Santos", "123", specialization3, new Float[]{35f, 52f});
-        this.photographers.add(photographer);
-
-        this.adapter = new PhotographerRecyclerViewAdapter(this.photographers);
+        photographers = usersService.getPhotographersByDatabase();
+        adapter = new PhotographerRecyclerViewAdapter(photographers);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         photographersRecyclerView.setLayoutManager(layoutManager);
@@ -77,6 +63,9 @@ public class HomeActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Toast.makeText(HomeActivity.this,"item selecionado: ", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                                intent.putExtra("PROFILE_ID", photographers.get(position).getId());
+                                startActivity(intent);
                             }
 
                             @Override
@@ -102,12 +91,9 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
+                                        @NonNull ViewGroup parent) {
 
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-
-                return view;
+                return super.getDropDownView(position, convertView, parent);
             }
         };
 
@@ -189,30 +175,27 @@ public class HomeActivity extends AppCompatActivity {
         EditText maxValue = findViewById(R.id.maxValue);
         Button searchButton = findViewById(R.id.searchButton);
 
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<Photographer> filteredList = new ArrayList<>();
+        searchButton.setOnClickListener(view -> {
+            List<Photographer> filteredList = new ArrayList<>();
 
-                if (minValue.getText().toString().isEmpty() || maxValue.getText().toString().isEmpty()) {
-                    adapter.setPhotographers(photographers);
-                    return;
+            if (minValue.getText().toString().isEmpty() || maxValue.getText().toString().isEmpty()) {
+                adapter.setPhotographers(photographers);
+                return;
+            }
+
+            float min = Float.parseFloat(minValue.getText().toString());
+            float max = Float.parseFloat(maxValue.getText().toString());
+
+            for (Photographer photographer : photographers) {
+                if (min >= photographer.getMinValue() && max <= photographer.getMaxValue()) {
+                    filteredList.add(photographer);
                 }
+            }
 
-                Float min = Float.parseFloat(minValue.getText().toString());
-                Float max = Float.parseFloat(maxValue.getText().toString());
-
-                for (Photographer photographer : photographers) {
-                    if (min >= photographer.getMinValue() && max <= photographer.getMaxValue()) {
-                        filteredList.add(photographer);
-                    }
-                }
-
-                if (filteredList.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Nenhum dado encontrado", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapter.setPhotographers(filteredList);
-                }
+            if (filteredList.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Nenhum dado encontrado", Toast.LENGTH_SHORT).show();
+            } else {
+                adapter.setPhotographers(filteredList);
             }
         });
     }

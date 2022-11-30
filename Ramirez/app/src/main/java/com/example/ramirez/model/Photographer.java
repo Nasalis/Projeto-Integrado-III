@@ -47,6 +47,15 @@ public class Photographer {
         return  this.prices[1];
     }
 
+    public String getPrices() {
+        StringBuilder prices = new StringBuilder("R$ ")
+                .append(this.getMinValue())
+                .append(" - R$ ")
+                .append(this.getMaxValue())
+                .append(" / foto");
+        return prices.toString();
+    }
+
     public List<String> getSpecializations() {
         return this.specializations;
     }
