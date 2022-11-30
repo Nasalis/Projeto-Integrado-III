@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void onItemClick(View view, int position) {
                                 Toast.makeText(HomeActivity.this,"item selecionado: ", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                                intent.putExtra("PROFILE_ID", position);
+                                intent.putExtra("PROFILE_ID", photographers.get(position).getId());
                                 startActivity(intent);
                             }
 

@@ -1,9 +1,8 @@
 package com.example.ramirez;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -14,14 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ramirez.adapter.PhotoRecyclerViewAdapter;
-import com.example.ramirez.dao.PhotographerDAO;
 import com.example.ramirez.dao.PostDAO;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
-import com.example.ramirez.model.Comment;
+import com.example.ramirez.helpers.SessionManager;
+import com.example.ramirez.helpers.UsersService;
 import com.example.ramirez.model.Photographer;
 import com.example.ramirez.model.Post;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -38,11 +36,17 @@ public class ProfileActivity extends AppCompatActivity {
         this.postRecyclerView = findViewById(R.id.listaDePostagem);
         this.posts = PostDAO.getInstance(getApplicationContext()).getPosts();
 
-        Bundle extras = getIntent().getExtras();
-        Integer index = extras.getInt("PROFILE_ID");
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-        ArrayList<Photographer> photographers = PhotographerDAO.getInstance(this).getPhotographer();
-        Photographer currentPhotographer = photographers.get(index);
+        Bundle extras = getIntent().getExtras();
+        String id = extras.getString("PROFILE_ID");
+
+        SessionManager sessionManager = new SessionManager(this);
+        UsersService usersService = new UsersService(sessionManager);
+
+
+        Photographer currentPhotographer = usersService.getPhotographer(id);
 
         TextView userName = findViewById(R.id.photographerNameProfile);
         TextView userPrices = findViewById(R.id.photographerPrices);
