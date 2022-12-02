@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.example.ramirez.model.Photographer;
 import com.example.ramirez.model.Post;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
     private RecyclerView postRecyclerView;
@@ -30,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_profile_photo);
 
         this.postRecyclerView = findViewById(R.id.listaDePostagem);
@@ -40,21 +42,27 @@ public class ProfileActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         Bundle extras = getIntent().getExtras();
-        String id = extras.getString("PROFILE_ID");
+        int id = extras.getInt("PROFILE_ID");
 
         SessionManager sessionManager = new SessionManager(this);
-        UsersService usersService = new UsersService(sessionManager);
+        UsersService usersService = UsersService.getInstance(sessionManager);
 
 
-        Photographer currentPhotographer = usersService.getPhotographer(id);
+        Photographer currentPhotographer = usersService.getPhotographers().get(id);
 
-        TextView userName = findViewById(R.id.photographerNameProfile);
+        TextView userName = findViewById(R.id.editNameUserProfile);
         TextView userPrices = findViewById(R.id.photographerPrices);
         TextView userSpecialization = findViewById(R.id.photographerSpecializations);
+        TextView userBio = findViewById(R.id.photographerBio);
+        TextView userViews = findViewById(R.id.txtViewsAmount);
 
         userName.setText(currentPhotographer.getName());
         userPrices.setText(currentPhotographer.getPrices());
+        String bioText = !currentPhotographer.getBio().isEmpty() ? currentPhotographer.getBio() : "Sem informação adicionada...";
+        userBio.setText(bioText);
         userSpecialization.setText(currentPhotographer.getSpecializationsAsString());
+        String viewsMessage = currentPhotographer.getViews() + " visualizações";
+        userViews.setText(viewsMessage);
 
         this.adapter = new PhotoRecyclerViewAdapter(this.posts);
 
@@ -88,5 +96,12 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                 )
         );
+
+        ImageView editProfileButton = findViewById(R.id.editProfileButton);
+        editProfileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            intent.putExtra("EDIT_PROFILE_ID", id);
+            startActivity(intent);
+        });
     }
 }

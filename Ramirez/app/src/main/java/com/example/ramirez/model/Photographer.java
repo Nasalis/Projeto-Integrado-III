@@ -8,15 +8,19 @@ public class Photographer {
     private String state;
     private String city;
     private String image;
+    private long views;
+    private String bio;
     private List<String> specializations;
     private Float[] prices;
 
-    public Photographer(String id, String name, String state, String city, String image, List<String> specializations, Float[] prices) {
+    public Photographer(String id, String name, String state, String city, String image, long views, String bio, List<String> specializations, Float[] prices) {
         this.id = id;
         this.name = name;
         this.state = state;
         this.city = city;
         this.image = image;
+        this.views = views;
+        this.bio = bio;
         this.specializations = specializations;
         this.prices = prices;
     }
@@ -36,6 +40,12 @@ public class Photographer {
     public String getState() {
         return this.state;
     }
+
+    public long getViews() {
+        return this.views;
+    }
+
+    public String getBio() { return this.bio; }
 
     public String getImage() { return this.image; }
 

@@ -29,8 +29,41 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/editProfileButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/editprofileinfo"
+                    app:srcCompat="@drawable/user_edit" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/publishimage"
+                    app:srcCompat="@drawable/image_add" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="340dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="56dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/container_input_bg"
             android:paddingLeft="12dp"
@@ -51,17 +84,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/editImageProfile"
                 android:layout_width="176dp"
                 android:layout_height="176dp"
-                app:layout_constraintBottom_toTopOf="@+id/photographerNameProfile"
+                app:layout_constraintBottom_toTopOf="@+id/editNameUserProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/photographer_profile" />
 
             <TextView
-                android:id="@+id/photographerNameProfile"
+                android:id="@+id/editNameUserProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="140dp"
@@ -72,7 +105,7 @@
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/editImageProfile" />
 
             <View
                 android:id="@+id/divider4"
@@ -80,7 +113,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="12dp"
                 android:background="@color/turquoise_one"
-                app:layout_constraintTop_toBottomOf="@+id/photographerNameProfile"
+                app:layout_constraintTop_toBottomOf="@+id/editNameUserProfile"
                 tools:layout_editor_absoluteX="12dp" />
 
             <TextView
@@ -90,18 +123,18 @@
                 android:layout_marginTop="12dp"
                 android:text="Este perfil recebeu"
                 android:textColor="@color/gray_three"
-                app:layout_constraintBottom_toTopOf="@+id/textView24"
+                app:layout_constraintBottom_toTopOf="@+id/txtViewsAmount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/txtViewsAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="12dp"
-                android:text="42 visualizações"
+                android:text="@string/_42_visualiza_es"
                 android:textColor="@color/turquoise_one"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,17 +167,17 @@
                 android:text="Sobre mim"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView9"
+                app:layout_constraintBottom_toTopOf="@+id/photographerBio"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/photographerBio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet tellus pharetra, fermentum massa feugiat, ornare felis. Curabitur et mattis mi. Ut gravida purus dictum dui porttitor hendrerit. Curabitur a porta augue. "
+                android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_in_sit_amet_tellus_pharetra_fermentum_massa_feugiat_ornare_felis_curabitur_et_mattis_mi_ut_gravida_purus_dictum_dui_porttitor_hendrerit_curabitur_a_porta_augue"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"

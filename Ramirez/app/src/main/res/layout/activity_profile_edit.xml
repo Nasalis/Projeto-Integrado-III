@@ -51,10 +51,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/editImageProfile"
                 android:layout_width="176dp"
                 android:layout_height="176dp"
-                app:layout_constraintBottom_toTopOf="@+id/photographerNameProfile"
+                app:layout_constraintBottom_toTopOf="@+id/editNameUserProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +62,7 @@
                 android:contentDescription="TODO" />
 
             <TextView
-                android:id="@+id/photographerNameProfile"
+                android:id="@+id/editNameUserProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="140dp"
@@ -73,7 +73,7 @@
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/editImageProfile" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
