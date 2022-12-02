@@ -22,9 +22,27 @@ import okhttp3.Response;
 
 public class UsersService {
     private SessionManager sessionManager;
+    private static UsersService instance;
+    private List<Photographer> photographersList;
 
-    public UsersService(SessionManager sessionManager) {
+    private UsersService(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
+        this.photographersList = getPhotographersByDatabase();
+    }
+
+    public List<Photographer> getPhotographers() {
+        return this.photographersList;
+    }
+
+    public static UsersService getInstance(SessionManager sessionManager) {
+        if(instance == null) {
+            synchronized(UsersService.class) {
+                if(instance == null) {
+                    instance = new UsersService(sessionManager);
+                }
+            }
+        }
+        return instance;
     }
 
     public List<Photographer> getPhotographersByDatabase() {
@@ -64,11 +82,15 @@ public class UsersService {
                             String state = mJsonObjectProperty.getString("state");
                             String city = mJsonObjectProperty.getString("city");
                             String profileImage = mJsonObjectProperty.getString("profile_img");
+                            long views = mJsonObjectProperty.getLong("views");
+                            String bio = mJsonObjectProperty.getString("bio").equals("null") ? "" : mJsonObjectProperty.getString("bio");
                             JSONArray specializationsArray = mJsonObjectProperty.getJSONArray("specialization");
                             JSONArray pricesArray = mJsonObjectProperty.getJSONArray("services_price");
 
                             ArrayList<String> specializations = new ArrayList<>();
                             Float[] prices = new Float[2];
+
+                            System.out.println("BIIIOO: " + bio);
 
                             for (int j = 0; j < specializationsArray.length(); j++) {
                                 specializations.add(specializationsArray.get(j).toString());
@@ -78,7 +100,7 @@ public class UsersService {
                                 prices[k] = (Float.parseFloat(pricesArray.get(k).toString()));
                             }
 
-                            photographers.add(new Photographer(id, name, state, city, profileImage, specializations, prices));
+                            photographers.add(new Photographer(id, name, state, city, profileImage, views, bio, specializations, prices));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -98,6 +120,7 @@ public class UsersService {
         String url = "http://10.0.2.2:3001/users";
 
         HttpUrl.Builder queryUrlBuilder = HttpUrl.get(URI.create(url)).newBuilder();
+        System.out.println("AAAAAAAAAA:" + idPhotographer);
         queryUrlBuilder.addQueryParameter("id", idPhotographer);
 
         Request request = new Request.Builder()
@@ -116,6 +139,8 @@ public class UsersService {
             String state = photographerJsonObject.getString("state");
             String city = photographerJsonObject.getString("city");
             String profileImage = photographerJsonObject.getString("profile_img");
+            long views = photographerJsonObject.getLong("views");
+            String bio = photographerJsonObject.getString("bio");
             JSONArray specializationsArray = photographerJsonObject.getJSONArray("specialization");
             JSONArray pricesArray = photographerJsonObject.getJSONArray("services_price");
 
@@ -130,7 +155,7 @@ public class UsersService {
                 prices[k] = (Float.parseFloat(pricesArray.get(k).toString()));
             }
 
-            currentPhotographer = new Photographer(id, name, state, city, profileImage, specializations, prices);
+            currentPhotographer = new Photographer(id, name, state, city, profileImage, views, bio, specializations, prices);
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
