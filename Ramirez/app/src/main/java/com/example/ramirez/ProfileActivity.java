@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         Photographer currentPhotographer = usersService.getPhotographers().get(id);
 
-        TextView userName = findViewById(R.id.photographerNameProfile);
+        TextView userName = findViewById(R.id.editNameUserProfile);
         TextView userPrices = findViewById(R.id.photographerPrices);
         TextView userSpecialization = findViewById(R.id.photographerSpecializations);
         TextView userBio = findViewById(R.id.photographerBio);
@@ -100,6 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView editProfileButton = findViewById(R.id.editProfileButton);
         editProfileButton.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            intent.putExtra("EDIT_PROFILE_ID", id);
             startActivity(intent);
         });
     }
