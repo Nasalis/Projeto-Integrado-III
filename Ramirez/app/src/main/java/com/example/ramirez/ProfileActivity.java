@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.example.ramirez.model.Photographer;
 import com.example.ramirez.model.Post;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
     private RecyclerView postRecyclerView;
@@ -30,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_profile_photo);
 
         this.postRecyclerView = findViewById(R.id.listaDePostagem);
@@ -59,8 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
         String bioText = !currentPhotographer.getBio().isEmpty() ? currentPhotographer.getBio() : "Sem informação adicionada...";
         userBio.setText(bioText);
         userSpecialization.setText(currentPhotographer.getSpecializationsAsString());
-        String viewsMessage = new StringBuilder(Long.toString(currentPhotographer.getViews()))
-                .append(" visualizações").toString();
+        String viewsMessage = currentPhotographer.getViews() + " visualizações";
         userViews.setText(viewsMessage);
 
         this.adapter = new PhotoRecyclerViewAdapter(this.posts);
@@ -95,5 +96,11 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                 )
         );
+
+        ImageView editProfileButton = findViewById(R.id.editProfileButton);
+        editProfileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            startActivity(intent);
+        });
     }
 }
