@@ -44,10 +44,10 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView photographersRecyclerView = findViewById(R.id.photographersRecyclerView);
 
         SessionManager sessionManager = new SessionManager(this);
-        UsersService usersService = new UsersService(sessionManager);
+        UsersService usersService = UsersService.getInstance(sessionManager);
         SpecializationService specializationService = new SpecializationService(sessionManager);
 
-        photographers = usersService.getPhotographersByDatabase();
+        photographers = usersService.getPhotographers();
         adapter = new PhotographerRecyclerViewAdapter(photographers);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void onItemClick(View view, int position) {
                                 Toast.makeText(HomeActivity.this,"item selecionado: ", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                                intent.putExtra("PROFILE_ID", photographers.get(position).getId());
+                                intent.putExtra("PROFILE_ID", position);
                                 startActivity(intent);
                             }
 
