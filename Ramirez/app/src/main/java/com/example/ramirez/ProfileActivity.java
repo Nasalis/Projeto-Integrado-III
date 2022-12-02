@@ -40,21 +40,28 @@ public class ProfileActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         Bundle extras = getIntent().getExtras();
-        String id = extras.getString("PROFILE_ID");
+        int id = extras.getInt("PROFILE_ID");
 
         SessionManager sessionManager = new SessionManager(this);
-        UsersService usersService = new UsersService(sessionManager);
+        UsersService usersService = UsersService.getInstance(sessionManager);
 
 
-        Photographer currentPhotographer = usersService.getPhotographer(id);
+        Photographer currentPhotographer = usersService.getPhotographers().get(id);
 
         TextView userName = findViewById(R.id.photographerNameProfile);
         TextView userPrices = findViewById(R.id.photographerPrices);
         TextView userSpecialization = findViewById(R.id.photographerSpecializations);
+        TextView userBio = findViewById(R.id.photographerBio);
+        TextView userViews = findViewById(R.id.txtViewsAmount);
 
         userName.setText(currentPhotographer.getName());
         userPrices.setText(currentPhotographer.getPrices());
+        String bioText = !currentPhotographer.getBio().isEmpty() ? currentPhotographer.getBio() : "Sem informação adicionada...";
+        userBio.setText(bioText);
         userSpecialization.setText(currentPhotographer.getSpecializationsAsString());
+        String viewsMessage = new StringBuilder(Long.toString(currentPhotographer.getViews()))
+                .append(" visualizações").toString();
+        userViews.setText(viewsMessage);
 
         this.adapter = new PhotoRecyclerViewAdapter(this.posts);
 
