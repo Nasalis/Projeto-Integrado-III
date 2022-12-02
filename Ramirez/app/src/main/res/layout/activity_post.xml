@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/editImageProfile"
                 android:layout_width="347dp"
                 android:layout_height="189dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2">
+                app:layout_constraintTop_toBottomOf="@+id/editImageProfile">
 
                 <TextView
                     android:id="@+id/photoPrice"
