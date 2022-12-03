@@ -49,6 +49,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".ProfileUserActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false">
         </activity>
