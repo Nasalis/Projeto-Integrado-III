@@ -22,13 +22,10 @@ public class EditProfileActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Bundle extras = getIntent().getExtras();
-        int id = extras.getInt("EDIT_PROFILE_ID");
-
         SessionManager sessionManager = new SessionManager(this);
         UsersService usersService = UsersService.getInstance(sessionManager);
 
-        Photographer currentPhotographer = usersService.getPhotographers().get(id);
+        Photographer currentPhotographer = usersService.getPhotographer(sessionManager.fetchUserId());
 
         TextView userName = findViewById(R.id.editNameUserProfile);
 
