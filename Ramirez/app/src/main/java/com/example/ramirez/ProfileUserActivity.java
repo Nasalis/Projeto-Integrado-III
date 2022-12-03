@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ramirez.adapter.PhotoRecyclerViewAdapter;
 import com.example.ramirez.dao.PostDAO;
+import com.example.ramirez.helpers.FirebaseHelper;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.helpers.SessionManager;
 import com.example.ramirez.helpers.UsersService;
 import com.example.ramirez.model.Photographer;
 import com.example.ramirez.model.Post;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 import java.util.Objects;
@@ -94,9 +96,16 @@ public class ProfileUserActivity extends AppCompatActivity {
         );
 
         ImageView editProfileButton = findViewById(R.id.editProfileButton);
+        ImageView publishNewPhoto = findViewById(R.id.publishPostButton);
+
         editProfileButton.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileUserActivity.this, EditProfileActivity.class);
             intent.putExtra("EDIT_PROFILE_ID", sessionManager.fetchUserId());
+            startActivity(intent);
+        });
+
+        publishNewPhoto.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileUserActivity.this, PostPhotoActivity.class);
             startActivity(intent);
         });
     }
