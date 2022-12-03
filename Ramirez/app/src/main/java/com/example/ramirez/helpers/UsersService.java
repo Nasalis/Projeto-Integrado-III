@@ -117,22 +117,17 @@ public class UsersService {
         Photographer currentPhotographer = null;
 
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.0.2.2:3001/users";
-
-        HttpUrl.Builder queryUrlBuilder = HttpUrl.get(URI.create(url)).newBuilder();
-        System.out.println("AAAAAAAAAA:" + idPhotographer);
-        queryUrlBuilder.addQueryParameter("id", idPhotographer);
+        String url = "http://10.0.2.2:3001/user/" + idPhotographer;
 
         Request request = new Request.Builder()
+                .url(url)
                 .get()
                 .addHeader("Authorization", "Bearer " + sessionManager.fetchAuthToken())
-                .url(queryUrlBuilder.build())
                 .build();
 
         try {
             Response response = client.newCall(request).execute();
-            JSONArray jsonArray = new JSONArray(response.body().string());
-            JSONObject photographerJsonObject = jsonArray.getJSONObject(0);
+            JSONObject photographerJsonObject = new JSONObject(response.body().string());
 
             String id = photographerJsonObject.getJSONObject("_id").getString("$oid");
             String name = photographerJsonObject.getString("name");
@@ -140,7 +135,7 @@ public class UsersService {
             String city = photographerJsonObject.getString("city");
             String profileImage = photographerJsonObject.getString("profile_img");
             long views = photographerJsonObject.getLong("views");
-            String bio = photographerJsonObject.getString("bio");
+            String bio = photographerJsonObject.getString("bio").equals("null") ? "" : photographerJsonObject.getString("bio");
             JSONArray specializationsArray = photographerJsonObject.getJSONArray("specialization");
             JSONArray pricesArray = photographerJsonObject.getJSONArray("services_price");
 

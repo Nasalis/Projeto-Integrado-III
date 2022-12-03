@@ -49,19 +49,20 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/editProfileButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ramirez_mini_logo" />
+                    android:contentDescription="@string/editprofileinfo"
+                    app:srcCompat="@drawable/user_edit" />
 
                 <ImageView
-                    android:id="@+id/currentUserProfile"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/publishPostButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:baselineAlignBottom="false"
-                    app:srcCompat="@drawable/photographer_profile" />
+                    android:contentDescription="@string/publishimage"
+                    app:srcCompat="@drawable/image_add" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="340dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="56dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/container_input_bg"
             android:paddingLeft="12dp"
@@ -78,7 +79,7 @@
             android:paddingRight="12dp"
             android:paddingBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

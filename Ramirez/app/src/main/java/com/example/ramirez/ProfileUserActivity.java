@@ -15,16 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ramirez.adapter.PhotoRecyclerViewAdapter;
 import com.example.ramirez.dao.PostDAO;
+import com.example.ramirez.helpers.FirebaseHelper;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.helpers.SessionManager;
 import com.example.ramirez.helpers.UsersService;
 import com.example.ramirez.model.Photographer;
 import com.example.ramirez.model.Post;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileUserActivity extends AppCompatActivity {
     private RecyclerView postRecyclerView;
     private List<Post> posts;
     private PhotoRecyclerViewAdapter adapter;
@@ -33,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        setContentView(R.layout.activity_profile_photo);
+        setContentView(R.layout.activity_profile_photo_user);
 
         this.postRecyclerView = findViewById(R.id.listaDePostagem);
         this.posts = PostDAO.getInstance(getApplicationContext()).getPosts();
@@ -41,14 +43,10 @@ public class ProfileActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Bundle extras = getIntent().getExtras();
-        int id = extras.getInt("PROFILE_ID");
-
         SessionManager sessionManager = new SessionManager(this);
         UsersService usersService = UsersService.getInstance(sessionManager);
 
-
-        Photographer currentPhotographer = usersService.getPhotographers().get(id);
+        Photographer currentPhotographer = usersService.getPhotographer(sessionManager.fetchUserId());
 
         TextView userName = findViewById(R.id.editNameUserProfile);
         TextView userPrices = findViewById(R.id.photographerPrices);
@@ -78,8 +76,8 @@ public class ProfileActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Toast.makeText(ProfileActivity.this,"item selecionado: ", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(ProfileActivity.this, PostActivity.class);
+                                Toast.makeText(ProfileUserActivity.this,"item selecionado: ", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(ProfileUserActivity.this, PostActivity.class);
                                 intent.putExtra("POST_ID", position);
                                 startActivity(intent);
                             }
@@ -97,9 +95,17 @@ public class ProfileActivity extends AppCompatActivity {
                 )
         );
 
-        ImageView currentUserProfileBtn = findViewById(R.id.currentUserProfile);
-        currentUserProfileBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, ProfileUserActivity.class);
+        ImageView editProfileButton = findViewById(R.id.editProfileButton);
+        ImageView publishNewPhoto = findViewById(R.id.publishPostButton);
+
+        editProfileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileUserActivity.this, EditProfileActivity.class);
+            intent.putExtra("EDIT_PROFILE_ID", sessionManager.fetchUserId());
+            startActivity(intent);
+        });
+
+        publishNewPhoto.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileUserActivity.this, PostPhotoActivity.class);
             startActivity(intent);
         });
     }

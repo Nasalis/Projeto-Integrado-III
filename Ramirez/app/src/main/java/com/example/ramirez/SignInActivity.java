@@ -104,6 +104,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     try {
                         sessionManager.saveAuthToken(Jobject.get("token").toString());
+                        sessionManager.saveUserId(Jobject.getJSONObject("user").getString("$oid"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

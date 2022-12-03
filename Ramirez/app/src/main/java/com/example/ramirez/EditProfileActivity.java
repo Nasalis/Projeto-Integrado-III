@@ -22,16 +22,26 @@ public class EditProfileActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Bundle extras = getIntent().getExtras();
-        int id = extras.getInt("EDIT_PROFILE_ID");
-
         SessionManager sessionManager = new SessionManager(this);
         UsersService usersService = UsersService.getInstance(sessionManager);
 
-        Photographer currentPhotographer = usersService.getPhotographers().get(id);
+        Photographer currentPhotographer = usersService.getPhotographer(sessionManager.fetchUserId());
 
-        TextView userName = findViewById(R.id.editNameUserProfile);
+        TextView userName = findViewById(R.id.nameUserEdit);
+        TextView userEmail = findViewById(R.id.emailUserEdit);
+        TextView userBio = findViewById(R.id.bioEdit);
+        TextView userCity = findViewById(R.id.cityEdit);
+        TextView userState = findViewById(R.id.stateEdit);
+        TextView userMinValue = findViewById(R.id.minValueEdit);
+        TextView userMaxValue = findViewById(R.id.maxValueEdit);
 
         userName.setText(currentPhotographer.getName());
+        userEmail.setText(currentPhotographer.getName());
+        userBio.setText(currentPhotographer.getBio());
+        userCity.setText(currentPhotographer.getCity());
+        userState.setText(currentPhotographer.getState());
+        userMinValue.setText(Float.toString(currentPhotographer.getMinValue()));
+        userMaxValue.setText(Float.toString(currentPhotographer.getMinValue()));
+
     }
 }

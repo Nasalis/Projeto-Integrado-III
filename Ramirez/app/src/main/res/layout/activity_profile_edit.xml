@@ -155,7 +155,7 @@
                     tools:layout_editor_absoluteX="8dp" />
 
                 <EditText
-                    android:id="@+id/ewwd"
+                    android:id="@+id/passwordEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -169,13 +169,13 @@
                     android:textColor="@color/gray_two"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/nacnoEdit"
+                    app:layout_constraintBottom_toTopOf="@+id/confirmPasswordEdit"
                     app:layout_constraintTop_toBottomOf="@+id/passwordSignIn"
                     tools:layout_editor_absoluteX="12dp" />
 
                 <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
                 <EditText
-                    android:id="@+id/nacnoEdit"
+                    android:id="@+id/confirmPasswordEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -190,11 +190,11 @@
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ewwd"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordEdit"
                     tools:layout_editor_absoluteX="12dp" />
 
                 <EditText
-                    android:id="@+id/edit_text"
+                    android:id="@+id/bioEdit"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginBottom="16dp"
@@ -207,7 +207,7 @@
 
 
                 <EditText
-                    android:id="@+id/nameVacancyToEdit9"
+                    android:id="@+id/cityEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -226,7 +226,7 @@
                     android:autofillHints="" />
 
                 <EditText
-                    android:id="@+id/nameVacancyToEdit4"
+                    android:id="@+id/stateEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -256,7 +256,7 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <EditText
-                    android:id="@+id/nameVacancyToEdit14"
+                    android:id="@+id/minValueEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -274,7 +274,7 @@
                     tools:layout_editor_absoluteX="8dp" />
 
                 <EditText
-                    android:id="@+id/nameVacancyToEdit15"
+                    android:id="@+id/maxValueEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
