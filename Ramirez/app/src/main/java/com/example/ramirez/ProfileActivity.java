@@ -97,10 +97,9 @@ public class ProfileActivity extends AppCompatActivity {
                 )
         );
 
-        ImageView editProfileButton = findViewById(R.id.editProfileButton);
-        editProfileButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-            intent.putExtra("EDIT_PROFILE_ID", id);
+        ImageView currentUserProfileBtn = findViewById(R.id.currentUserProfile);
+        currentUserProfileBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, ProfileUserActivity.class);
             startActivity(intent);
         });
     }
