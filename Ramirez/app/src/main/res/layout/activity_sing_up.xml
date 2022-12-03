@@ -94,7 +94,7 @@
                 app:layout_constraintVertical_chainStyle="spread" />
 
             <EditText
-                android:id="@+id/ewwd"
+                android:id="@+id/passwordEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
@@ -106,13 +106,13 @@
                 android:textColor="@color/gray_two"
                 android:textColorHint="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/nacnoEdit"
+                app:layout_constraintBottom_toTopOf="@+id/confirmPasswordEdit"
                 app:layout_constraintTop_toBottomOf="@+id/passwordSignIn"
                 tools:layout_editor_absoluteX="12dp" />
 
             <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
             <EditText
-                android:id="@+id/nacnoEdit"
+                android:id="@+id/confirmPasswordEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
@@ -125,7 +125,7 @@
                 android:textColorHint="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ewwd"
+                app:layout_constraintTop_toBottomOf="@+id/passwordEdit"
                 tools:layout_editor_absoluteX="12dp" />
 
             <EditText
@@ -159,7 +159,7 @@
                 android:textColor="@color/gray_two"
                 android:textColorHint="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/ewwd"
+                app:layout_constraintBottom_toTopOf="@+id/passwordEdit"
                 app:layout_constraintTop_toBottomOf="@+id/emailSignIn"
                 tools:layout_editor_absoluteX="-6dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
