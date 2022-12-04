@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <EditText
-            android:id="@+id/emailSignIn"
+            android:id="@+id/postTitleBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/input_bg"
@@ -72,13 +72,13 @@
             android:textColor="@color/white"
             android:textColorHint="@color/gray_two"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/passwordSignIn"
+            app:layout_constraintBottom_toTopOf="@+id/postPriceBtn"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="12dp"
             android:autofillHints="" />
 
         <EditText
-            android:id="@+id/passwordSignIn"
+            android:id="@+id/postPriceBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/input_bg"
@@ -91,7 +91,7 @@
             android:textColorHint="@color/gray_two"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailSignIn"
+            app:layout_constraintTop_toBottomOf="@+id/postTitleBtn"
             tools:layout_editor_absoluteX="12dp"
             android:autofillHints="" />
     </androidx.constraintlayout.widget.ConstraintLayout>
