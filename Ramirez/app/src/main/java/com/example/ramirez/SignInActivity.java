@@ -67,8 +67,8 @@ public class SignInActivity extends AppCompatActivity {
     private void singIn() throws IOException, JSONException {
         Context context = getApplicationContext();
 
-        TextView email = findViewById(R.id.emailSignIn);
-        TextView password = findViewById(R.id.passwordSignIn);
+        TextView email = findViewById(R.id.postTitleBtn);
+        TextView password = findViewById(R.id.postPriceBtn);
 
         JSONObject body = new JSONObject();
         JSONObject user = new JSONObject();

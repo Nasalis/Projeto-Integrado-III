@@ -1,5 +1,11 @@
 package com.example.ramirez.adapter;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ramirez.R;
 import com.example.ramirez.model.Post;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecyclerViewAdapter.PhotoViewHolder> {
     private List<Post> posts;
+    private Context context;
 
-    public PhotoRecyclerViewAdapter(List<Post> posts) {
+    public PhotoRecyclerViewAdapter(List<Post> posts, Context context) {
         this.posts = posts;
+        this.context = context;
     }
 
     public static class PhotoViewHolder extends RecyclerView.ViewHolder {
@@ -46,7 +57,10 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     public void onBindViewHolder(@NonNull PhotoRecyclerViewAdapter.PhotoViewHolder holder, int position) {
         Post post = this.posts.get(position);
 
-        holder.post_image.setImageBitmap(post.getImage());
+        System.out.println("IMAGEEES: " + post.getImageUri());
+
+        Picasso.get().load(Uri.parse(post.getImageUri()))
+                .into( holder.post_image);
     }
 
     @Override

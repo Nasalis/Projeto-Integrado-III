@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ramirez.helpers.SessionManager;
-import com.example.ramirez.helpers.UsersService;
+import com.example.ramirez.services.UsersService;
 import com.example.ramirez.model.Photographer;
 
 import java.util.Objects;

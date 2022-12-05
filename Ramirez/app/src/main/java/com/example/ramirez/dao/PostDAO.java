@@ -38,9 +38,7 @@ public class PostDAO implements IPostDAO {
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.photo_view);
 
         posts = new ArrayList<>();
-        posts.add(new Post("1", "Post 1", 25f, bitmap, comments));
-        posts.add(new Post("2", "Post 2", 0f, bitmap, comments));
-        posts.add(new Post("3", "Post 3", 24f, bitmap, comments));
+
     }
 
     @Override

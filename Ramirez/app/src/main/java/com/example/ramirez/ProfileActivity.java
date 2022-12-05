@@ -17,7 +17,7 @@ import com.example.ramirez.adapter.PhotoRecyclerViewAdapter;
 import com.example.ramirez.dao.PostDAO;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.helpers.SessionManager;
-import com.example.ramirez.helpers.UsersService;
+import com.example.ramirez.services.UsersService;
 import com.example.ramirez.model.Photographer;
 import com.example.ramirez.model.Post;
 
@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         String viewsMessage = currentPhotographer.getViews() + " visualizações";
         userViews.setText(viewsMessage);
 
-        this.adapter = new PhotoRecyclerViewAdapter(this.posts);
+        this.adapter = new PhotoRecyclerViewAdapter(this.posts, this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         postRecyclerView.setLayoutManager(layoutManager);

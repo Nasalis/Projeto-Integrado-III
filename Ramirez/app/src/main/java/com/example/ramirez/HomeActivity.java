@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.example.ramirez.adapter.PhotographerRecyclerViewAdapter;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.helpers.SessionManager;
-import com.example.ramirez.helpers.UsersService;
+import com.example.ramirez.services.UsersService;
 import com.example.ramirez.model.Photographer;
 import com.example.ramirez.services.SpecializationService;
 
