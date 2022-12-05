@@ -8,15 +8,14 @@ public class Post {
     private String id;
     private String name;
     private Float price;
-    private Bitmap image;
+    private String image;
     private ArrayList<Comment> comments;
 
-    public Post(String id, String name, Float price, Bitmap image, ArrayList<Comment> comments) {
+    public Post(String id, String name, Float price, String image) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
-        this.comments = comments;
     }
 
     public String getId() {
@@ -31,7 +30,7 @@ public class Post {
         return this.price;
     }
 
-    public Bitmap getImage() { return this.image; }
+    public String getImage() { return this.image; }
 
     public ArrayList<Comment> getComments() { return this.comments; }
 
