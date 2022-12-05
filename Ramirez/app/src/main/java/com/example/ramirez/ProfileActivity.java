@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         String viewsMessage = currentPhotographer.getViews() + " visualizações";
         userViews.setText(viewsMessage);
 
-        this.adapter = new PhotoRecyclerViewAdapter(this.posts);
+        this.adapter = new PhotoRecyclerViewAdapter(this.posts, this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         postRecyclerView.setLayoutManager(layoutManager);

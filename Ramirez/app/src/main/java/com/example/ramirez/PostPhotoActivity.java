@@ -78,7 +78,8 @@ public class PostPhotoActivity extends AppCompatActivity {
 
         galleryButton.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            // intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             resultLauncher.launch(intent);
         });
 

@@ -1,5 +1,11 @@
 package com.example.ramirez.adapter;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ramirez.R;
 import com.example.ramirez.model.Post;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecyclerViewAdapter.PhotoViewHolder> {
     private List<Post> posts;
+    private Context context;
 
-    public PhotoRecyclerViewAdapter(List<Post> posts) {
+    public PhotoRecyclerViewAdapter(List<Post> posts, Context context) {
         this.posts = posts;
+        this.context = context;
     }
 
     public static class PhotoViewHolder extends RecyclerView.ViewHolder {
@@ -46,7 +56,21 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     public void onBindViewHolder(@NonNull PhotoRecyclerViewAdapter.PhotoViewHolder holder, int position) {
         Post post = this.posts.get(position);
 
-        holder.post_image.setImageBitmap(post.getImage());
+        Bitmap mIcon11 = null;
+        try {
+            InputStream in = new java.net.URL(post.getImage()).openStream();
+            mIcon11 = BitmapFactory.decodeStream(in);
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        }
+        try {
+            mIcon11 = MediaStore.Images.Media.getBitmap(context.getContentResolver(), Uri.parse(post.getImageUri()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        holder.post_image.setImageBitmap(mIcon11);
     }
 
     @Override
