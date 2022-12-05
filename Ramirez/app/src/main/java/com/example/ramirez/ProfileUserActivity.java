@@ -10,14 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ramirez.adapter.PhotoRecyclerViewAdapter;
-import com.example.ramirez.dao.PostDAO;
 import com.example.ramirez.helpers.FirebaseHelper;
 import com.example.ramirez.helpers.RecyclerItemClickListener;
 import com.example.ramirez.helpers.SessionManager;
@@ -25,9 +23,6 @@ import com.example.ramirez.services.PostService;
 import com.example.ramirez.services.UsersService;
 import com.example.ramirez.model.Photographer;
 import com.example.ramirez.model.Post;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageReference;
@@ -73,17 +68,11 @@ public class ProfileUserActivity extends AppCompatActivity {
         }
 
         this.postRecyclerView = findViewById(R.id.listaDePostagem);
-        this.posts = PostDAO.getInstance(getApplicationContext()).getPosts();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         UsersService usersService = UsersService.getInstance(sessionManager);
-        try {
-            getUserPosts(sessionManager);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         Photographer currentPhotographer = usersService.getPhotographer(sessionManager.fetchUserId());
 
@@ -101,8 +90,6 @@ public class ProfileUserActivity extends AppCompatActivity {
         String viewsMessage = currentPhotographer.getViews() + " visualizações";
         userViews.setText(viewsMessage);
 
-        buildAdapter();
-
         ImageView editProfileButton = findViewById(R.id.editProfileButton);
         ImageView publishNewPhoto = findViewById(R.id.publishPostButton);
 
@@ -113,24 +100,12 @@ public class ProfileUserActivity extends AppCompatActivity {
         });
 
         publishNewPhoto.setOnClickListener(v -> {
-            System.out.println("PPPPPPPPPPPPRRRRRRRRRRRRRRRRINNNNNNNNNNNNNNNTTTTTTTT");
             Intent intent = new Intent(getApplicationContext(), PostPhotoActivity.class);
             startActivity(intent);
         });
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SessionManager sessionManager = new SessionManager(this);
-        try {
-            getUserPosts(sessionManager);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void getUserPosts(SessionManager sessionManager) throws InterruptedException {
@@ -138,20 +113,26 @@ public class ProfileUserActivity extends AppCompatActivity {
         StorageReference storageRef = FirebaseHelper.getStorageReference();
         ArrayList<Post> postList =  postService.getPostsOfCurrentUser();
 
-        postList.forEach(post -> storageRef.child(post.getImage()).getDownloadUrl()
-            .addOnSuccessListener(uri -> {
-                post.setImageUri(uri.toString());
-                this.posts.add(post);
-            })
-            .addOnFailureListener(e -> System.out.println("ERRRRRROOOOOOOOORRRR")));
+        for (int i = 0; i < postList.size(); i++) {
+            int finalI = i;
+            storageRef.child(postList.get(i).getImage()).getDownloadUrl()
+                .addOnSuccessListener(uri -> {
+                    postList.get(finalI).setImageUri(uri.toString());
+                    this.posts.add(postList.get(finalI));
+                    if (finalI == postList.size() - 1) {
+                        buildAdapter();
+                    }
+                })
+                .addOnFailureListener(e -> e.printStackTrace());
+        }
     }
 
     public void buildAdapter() {
         if (this.posts.isEmpty()) {
             return;
         }
-        this.adapter = new PhotoRecyclerViewAdapter(this.posts, this);
 
+        this.adapter = new PhotoRecyclerViewAdapter(this.posts, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         postRecyclerView.setLayoutManager(layoutManager);
         postRecyclerView.hasFixedSize();

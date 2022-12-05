@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ramirez.R;
 import com.example.ramirez.model.Post;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,21 +57,10 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     public void onBindViewHolder(@NonNull PhotoRecyclerViewAdapter.PhotoViewHolder holder, int position) {
         Post post = this.posts.get(position);
 
-        Bitmap mIcon11 = null;
-        try {
-            InputStream in = new java.net.URL(post.getImage()).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }
-        try {
-            mIcon11 = MediaStore.Images.Media.getBitmap(context.getContentResolver(), Uri.parse(post.getImageUri()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("IMAGEEES: " + post.getImageUri());
 
-        holder.post_image.setImageBitmap(mIcon11);
+        Picasso.get().load(Uri.parse(post.getImageUri()))
+                .into( holder.post_image);
     }
 
     @Override
