@@ -17,3 +17,9 @@ Ramírez
 
 ## Links Externos
 [Back-end](https://github.com/Nasalis/ramirez)
+
+
+## Cobertura de Tests - Digital Ocean
+![alt text](./projectAssets/photo1670456400.jpeg)
+
+- [Relatório de Cobertura - .html](./projectAssets/coverage/index.html)
