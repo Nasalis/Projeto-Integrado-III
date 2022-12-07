@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         SessionManager sessionManager = new SessionManager(this);
         UsersService usersService = UsersService.getInstance(sessionManager);
-
 
         Photographer currentPhotographer = usersService.getPhotographers().get(id);
 
@@ -98,8 +98,16 @@ public class ProfileActivity extends AppCompatActivity {
         );
 
         ImageView currentUserProfileBtn = findViewById(R.id.currentUserProfile);
+        Button mapView = findViewById(R.id.mapViewBtn);
+
         currentUserProfileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, ProfileUserActivity.class);
+            startActivity(intent);
+        });
+
+        mapView.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, MapsActivity2.class);
+            intent.putExtra("MAP_LOCATION", currentPhotographer.getCity());
             startActivity(intent);
         });
     }
