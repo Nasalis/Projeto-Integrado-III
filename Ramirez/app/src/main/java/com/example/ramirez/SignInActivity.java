@@ -77,7 +77,7 @@ public class SignInActivity extends AppCompatActivity {
         body.put("user", user);
 
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.0.2.2:3001/login";
+        String url = "https://dolphin-app-vgvge.ondigitalocean.app/login";
 
         RequestBody newBody = RequestBody.create(JSON, body.toString());
         Request request = new Request.Builder()

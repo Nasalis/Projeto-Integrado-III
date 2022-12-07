@@ -87,14 +87,14 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="normal|bold"
-                app:layout_constraintBottom_toTopOf="@+id/postTitleBtn"
+                app:layout_constraintBottom_toTopOf="@+id/registerUserName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread" />
 
             <EditText
-                android:id="@+id/passwordEdit"
+                android:id="@+id/registerPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
@@ -106,13 +106,13 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray_two"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/confirmPasswordEdit"
-                app:layout_constraintTop_toBottomOf="@+id/postPriceBtn"
+                app:layout_constraintBottom_toTopOf="@+id/registerConfirmPassword"
+                app:layout_constraintTop_toBottomOf="@+id/registerEmail"
                 tools:layout_editor_absoluteX="12dp" />
 
             <!-- https://stackoverflow.com/questions/3685790/how-to-switch-between-hide-and-view-password -->
             <EditText
-                android:id="@+id/confirmPasswordEdit"
+                android:id="@+id/registerConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
@@ -125,11 +125,11 @@
                 android:textColorHint="@color/gray_two"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordEdit"
+                app:layout_constraintTop_toBottomOf="@+id/registerPassword"
                 tools:layout_editor_absoluteX="12dp" />
 
             <EditText
-                android:id="@+id/postTitleBtn"
+                android:id="@+id/registerUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
@@ -141,12 +141,12 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray_two"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/postPriceBtn"
+                app:layout_constraintBottom_toTopOf="@+id/registerEmail"
                 app:layout_constraintTop_toBottomOf="@+id/textiew2"
                 tools:layout_editor_absoluteX="8dp" />
 
             <EditText
-                android:id="@+id/postPriceBtn"
+                android:id="@+id/registerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
@@ -159,8 +159,8 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray_two"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/passwordEdit"
-                app:layout_constraintTop_toBottomOf="@+id/postTitleBtn"
+                app:layout_constraintBottom_toTopOf="@+id/registerPassword"
+                app:layout_constraintTop_toBottomOf="@+id/registerUserName"
                 tools:layout_editor_absoluteX="-6dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
@@ -196,49 +196,52 @@
                 android:ems="10"
                 android:hint="Especialização"
                 android:inputType="text"
+                android:minHeight="48dp"
                 android:shadowColor="@color/white"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray_two"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/nameVacancççyToEdit"
+                app:layout_constraintBottom_toTopOf="@+id/registerCity"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="12dp" />
 
             <EditText
-                android:id="@+id/nameVacancççyToEdit"
+                android:id="@+id/registerCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
                 android:ems="10"
                 android:hint="Cidade"
                 android:inputType="text"
+                android:minHeight="48dp"
                 android:shadowColor="@color/white"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray_two"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/nameVacncyToEdkit"
+                app:layout_constraintBottom_toTopOf="@+id/registerState"
                 app:layout_constraintTop_toBottomOf="@+id/nacnççoEdit"
                 tools:layout_editor_absoluteX="8dp" />
 
             <EditText
-                android:id="@+id/nameVacncyToEdkit"
+                android:id="@+id/registerState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
                 android:ems="10"
                 android:hint="Estado"
                 android:inputType="text"
+                android:minHeight="48dp"
                 android:shadowColor="@color/white"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray_two"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameVacancççyToEdit"
+                app:layout_constraintTop_toBottomOf="@+id/registerCity"
                 tools:layout_editor_absoluteX="-6dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

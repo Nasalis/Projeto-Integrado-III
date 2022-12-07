@@ -105,7 +105,7 @@ public class PostPhotoActivity extends AppCompatActivity {
                     .build();
 
             Request request = new Request.Builder()
-                    .url("http://10.0.2.2:3001/posts/")
+                    .url("https://dolphin-app-vgvge.ondigitalocean.app/posts/")
                     .post(requestBody)
                     .addHeader("Content-Type", "Multipart/FormData")
                     .addHeader("Authorization", "Bearer " + sessionManager.fetchAuthToken())
