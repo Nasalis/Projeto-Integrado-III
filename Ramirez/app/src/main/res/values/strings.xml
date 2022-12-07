@@ -18,4 +18,5 @@
     <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_in_sit_amet_tellus_pharetra_fermentum_massa_feugiat_ornare_felis_curabitur_et_mattis_mi_ut_gravida_purus_dictum_dui_porttitor_hendrerit_curabitur_a_porta_augue">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet tellus pharetra, fermentum massa feugiat, ornare felis. Curabitur et mattis mi. Ut gravida purus dictum dui porttitor hendrerit. Curabitur a porta augue.</string>
     <string name="publishimage">publishImage</string>
     <string name="editprofileinfo">editProfileInfo</string>
+    <string name="title_activity_maps2">MapsActivity2</string>
 </resources>

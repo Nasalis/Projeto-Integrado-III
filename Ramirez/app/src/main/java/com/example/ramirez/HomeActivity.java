@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         );
 
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, specializationsList){
+                this, R.layout.spinner_item, specializationsList){
 
             @Override
             public boolean isEnabled(int position){

@@ -48,7 +48,7 @@ public class UsersService {
         List<Photographer> photographers = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.0.2.2:3001/users";
+        String url = "https://dolphin-app-vgvge.ondigitalocean.app/users";
 
         Request request = new Request.Builder()
                 .url(url)
@@ -116,7 +116,7 @@ public class UsersService {
         Photographer currentPhotographer = null;
 
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.0.2.2:3001/user/" + idPhotographer;
+        String url = "https://dolphin-app-vgvge.ondigitalocean.app/user/" + idPhotographer;
 
         Request request = new Request.Builder()
                 .url(url)

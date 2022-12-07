@@ -84,11 +84,13 @@ android:fillViewport="true" >
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/container_input_bg"
         android:text="Faixa de preço:"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/minValue"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/specializationSpinner" />
@@ -98,13 +100,14 @@ android:fillViewport="true" >
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/container_input_white_bg"
         android:ems="10"
         android:hint="Mínimo"
         android:inputType="number"
         android:minHeight="48dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/maxValue"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -120,34 +123,33 @@ android:fillViewport="true" >
         android:minHeight="48dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/minValue" />
+        app:layout_constraintStart_toEndOf="@+id/minValue"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/localization"
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/container_input_bg"
-        android:inputType="text"
-        android:text="local"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="normal"
-        android:translationZ="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/container_input_white_bg"
+        android:ems="10"
+        android:hint="Local"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/photographersRecyclerView"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/maxValue" />
+        app:layout_constraintTop_toBottomOf="@+id/minValue" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/photographersRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/localization" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
