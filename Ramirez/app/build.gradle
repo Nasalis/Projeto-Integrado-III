@@ -9,7 +9,7 @@ sonarqube {
     properties {
         property "sonar.projectKey", "Nasalis_Projeto-Integrado-III"
         property "sonar.organization", "nasalis-32"
-        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.host.url", "https://sonarcloud.io/"
     }
 }
 
