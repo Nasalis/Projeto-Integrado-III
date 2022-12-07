@@ -13,6 +13,20 @@
         android:background="@color/black_one"
         tools:context=".SingUpActivity">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mapViewBtn"
+            android:layout_width="129dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/white_button_bg"
+            android:text="Ver no mapa"
+            android:textColor="@color/black_five"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
@@ -28,6 +42,7 @@
             app:layout_constraintGuide_end="30dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="30dp"
@@ -70,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="340dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="232dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/container_input_bg"
             android:paddingLeft="12dp"
@@ -78,7 +93,7 @@
             android:paddingRight="12dp"
             android:paddingBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
