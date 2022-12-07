@@ -1,11 +1,15 @@
 package com.example.ramirez;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Objects;
 
+import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -51,12 +56,12 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void registerNewUser() {
-        TextView userName = findViewById(R.id.registerUserName);
-        TextView userEmail = findViewById(R.id.registerEmail);
-        TextView userPassword = findViewById(R.id.registerPassword);
-        TextView userConfirmPassword = findViewById(R.id.registerConfirmPassword);
-        TextView userCity = findViewById(R.id.registerCity);
-        TextView userState = findViewById(R.id.registerState);
+        EditText userName = findViewById(R.id.registerUserName);
+        EditText userEmail = findViewById(R.id.registerEmail);
+        EditText userPassword = findViewById(R.id.registerPassword);
+        EditText userConfirmPassword = findViewById(R.id.registerConfirmPassword);
+        EditText userCity = findViewById(R.id.registerCity);
+        EditText userState = findViewById(R.id.registerState);
 
         JSONObject body = new JSONObject();
         JSONObject user = new JSONObject();
@@ -67,8 +72,9 @@ public class SignUpActivity extends AppCompatActivity {
             user.put("password", userPassword.getText().toString());
             user.put("password_confirmation", userConfirmPassword.getText().toString());
             user.put("city", this.isRegisterAsPhotographer ? userCity.getText().toString() : null);
-            body.put("state", this.isRegisterAsPhotographer ? userState.getText().toString() : null);
-            body.put("photographer", this.isRegisterAsPhotographer);
+            user.put("state", this.isRegisterAsPhotographer ? userState.getText().toString() : null);
+            user.put("photographer", this.isRegisterAsPhotographer);
+            body.put("user", user);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -82,12 +88,31 @@ public class SignUpActivity extends AppCompatActivity {
                 .url(url)
                 .post(newBody)
                 .build();
-        try {
-            Response response = client.newCall(request).execute();
-            System.out.println("DEU CERTOOOOOOOOO: " + response.body().toString());
-        } catch (IOException e) {
-            SignUpActivity.this.runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Cadastro falhou! Verifique seus dados", Toast.LENGTH_SHORT).show());
-        }
 
+        SignUpActivity self = this;
+
+        Thread thread = new Thread(() -> {
+            try {
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        self.runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Cadastro falhou! Verifique seus dados", Toast.LENGTH_SHORT).show());
+                    }
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                            startActivity(intent);
+                        } else {
+                            self.runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Cadastro falhou! Verifique seus dados", Toast.LENGTH_SHORT).show());
+                        }
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread.start();
     }
 }

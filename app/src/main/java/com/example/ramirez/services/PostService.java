@@ -42,7 +42,7 @@ public class PostService {
         ArrayList<Post> postList = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.0.2.2:3001/posts/" + sessionManager.fetchUserId();
+        String url = "https://dolphin-app-vgvge.ondigitalocean.app/posts/" + sessionManager.fetchUserId();
 
         Request request = new Request.Builder()
             .url(url)
