@@ -2,6 +2,15 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "Nasalis_Projeto-Integrado-III"
+        property "sonar.organization", "nasalis-32"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 android {
