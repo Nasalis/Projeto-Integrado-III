@@ -17,3 +17,6 @@ Ramírez
 
 ## Links Externos
 [Back-end](https://github.com/Nasalis/ramirez)
+
+## Sonarqube
+https://sonarcloud.io/summary/overall?id=Nasalis_Projeto-Integrado-III
